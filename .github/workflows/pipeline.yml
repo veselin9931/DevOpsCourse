@@ -22,5 +22,7 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm install
+      working-directory: CI-CD/01-02-Student-Registry-App
     - name: Excecute the tests
       run: npm test
+      working-directory: CI-CD/01-02-Student-Registry-App
