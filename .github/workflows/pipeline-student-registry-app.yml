@@ -40,9 +40,9 @@ jobs:
         cache: 'npm'
         cache-dependency-path: CI-CD/01-02-Student-Registry-App/package-lock.json
     - name: Deploy to Render.com
-      uses: render-examples/github-actions-deploy@v1
+      uses: JorgeLNJunior/render-deploy@v1.4.4
       with:
-        service-id: ${{ secrets.SERVICE_ID }}
-        api-key: ${{ secrets.RENDER_TOKEN }}  
-        wait-for-success: true
+        service_id: ${{ secrets.SERVICE_ID }}
+        api_key: ${{ secrets.RENDER_TOKEN }}  
+        wait_deploy: true
       
