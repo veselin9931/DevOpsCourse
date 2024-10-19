@@ -13,11 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     services:
       app:
-        image: node:16  # You can use a Node.js image to run your app
+        image: node:16
         ports:
           - 3000:3000
         options: >-
-          --entrypoint "sh -c 'cd /github/workspace/CI-CD/03-Library && npm install && npm run server'"
+          --workdir /github/workspace/CI-CD/03-Library
+          command: >
+          sh -c "npm install && npm run server"
+          cache-dependency-path: CI-CD/03-Library/package-lock.json
     steps:
     - name: Checkout the code
       uses: actions/checkout@v4
@@ -31,11 +34,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-    services:
-      app:
-        image: node:16  # Reuse the same service (Node.js) to run tests
-        ports:
-          - 3000:3000
     steps:
     - name: Checkout the code
       uses: actions/checkout@v4
