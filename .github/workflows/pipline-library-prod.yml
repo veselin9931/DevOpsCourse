@@ -19,17 +19,20 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
+        cache-dependency-path: CI-CD/03-Library/package-lock.json
         node-version: '16'
 
     - name: Install dependencies
       run: npm install
+      working-directory: CI-CD/03-Library
 
     - name: Start backend server
       run: npm run server &
-    
+      working-directory: CI-CD/03-Library
+
     - name: Start front-end app
       run: npm start &
-
+      working-directory: CI-CD/03-Library
   test:
     runs-on: ubuntu-latest
     needs: build  
