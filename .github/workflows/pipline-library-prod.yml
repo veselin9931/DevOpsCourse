@@ -45,8 +45,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '16'
-        cache-dependency-path: CI-CD/03-Library/package-lock.json
-
+        cache-dependency-path: CI-CD/03-Library/package.json
     - name: Install Playwright browsers
       run: npx playwright install
     - name: Run tests
