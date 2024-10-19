@@ -28,7 +28,7 @@ jobs:
 
     - name: Install Playwright browsers
       run: npx playwright install
-      working-directory: CI-CD/03-Library  # Correct working directory for Playwright installation
+      working-directory: CI-CD/03-Library
 
     - name: Start backend server
       run: npm run server &
@@ -50,18 +50,16 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '16'
-        cache-dependency-path: CI-CD/03-Library/package-lock.json  # Use package-lock.json for caching
+        cache-dependency-path: CI-CD/03-Library/package-lock.json
 
     - name: Install dependencies
       run: npm install
       working-directory: CI-CD/03-Library
 
-    - name: Install Playwright browsers
-      run: npx playwright install
-      working-directory: CI-CD/03-Library  # Install Playwright browsers in the correct directory
+    - name: Wait for the server to be ready
+      run: npx wait-on http://localhost:3000
+      working-directory: CI-CD/03-Library
 
     - name: Run tests
-      run: |
-        sleep 5  # Give the server and app some time to start
-        npm test
+      run: npm test
       working-directory: CI-CD/03-Library
