@@ -1,0 +1,48 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - library-prod
+  pull_request:
+    branches:
+      - library-prod
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start backend server
+      run: npm run server &
+    
+    - name: Start front-end app
+      run: npm start &
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build  
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+
+    - name: Run tests
+      run: |
+        sleep 5 npm test
