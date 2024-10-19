@@ -18,9 +18,9 @@ jobs:
           - 3000:3000
         options: >-
           --workdir /github/workspace/CI-CD/03-Library
-          command: >
+        command: >
           sh -c "npm install && npm run server"
-          cache-dependency-path: CI-CD/03-Library/package-lock.json
+          
     steps:
     - name: Checkout the code
       uses: actions/checkout@v4
