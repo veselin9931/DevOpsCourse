@@ -48,4 +48,5 @@ jobs:
 
     - name: Run tests
       run: |
-        sleep 5 npm test
+        sleep 5 
+        npm test
