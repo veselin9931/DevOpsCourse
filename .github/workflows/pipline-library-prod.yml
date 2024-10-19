@@ -11,15 +11,6 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-    services:
-      app:
-        image: node:16
-        ports:
-          - 3000:3000
-        options: >-
-          --workdir /github/workspace/CI-CD/03-Library
-          command: >
-          sh -c "npm install && npm run server"
 
     steps:
     - name: Checkout the code
@@ -39,11 +30,18 @@ jobs:
       run: npx playwright install
       working-directory: CI-CD/03-Library
 
-    - name: Wait for the server to be ready
-      run: |
-        npx wait-on http://localhost:3000  # Wait for the app to be accessible
+    - name: Start backend server
+      run: npm run server &
       working-directory: CI-CD/03-Library
 
-    - name: Run Playwright tests
+    - name: Start front-end app
+      run: npm start &
+      working-directory: CI-CD/03-Library
+
+    - name: Wait for the server to be ready
+      run: npx wait-on http://localhost:3000
+      working-directory: CI-CD/03-Library
+
+    - name: Run tests
       run: npm test
       working-directory: CI-CD/03-Library
