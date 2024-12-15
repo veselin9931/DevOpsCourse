@@ -1,4 +1,4 @@
-subscription_id              = "258a46af-741d-43f7-8b91-9a8526173e10"
+subscription_id              = ""
 location                     = "UK South"
 random_integer_min           = 1000
 random_integer_max           = 9999
