@@ -1,0 +1,43 @@
+name: movies-app
+services:
+    movies-backend:
+        networks:
+            - movies
+        container_name: backend
+        ports:
+            - 80:80
+        volumes:
+            - logs:/logs
+        environment:
+            - MONGODB_USERNAME=mongoadmin
+            - MONGODB_PASSWORD=secret
+        image: vgeorgiev99/movies-backend
+        build: ./backend
+    movies-frontend:
+        networks:
+            - movies
+        container_name: frontend
+        ports:
+            - 3000:3000
+        volumes:
+            - ./frontend/src:/src
+        image: vgeorgiev99/movies-frontend
+        build: ./frontend
+    mongo:
+        networks:
+            - movies
+        container_name: mongodb
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+            - MONGO_INITDB_ROOT_PASSWORD=secret
+        volumes:
+            - data:/data/db
+        image: mongo
+networks:
+    movies:
+        name: movies
+volumes:
+    logs:
+        name: logs
+    data:
+        name: data

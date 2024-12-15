@@ -1,0 +1,12 @@
+subscription_id              = "258a46af-741d-43f7-8b91-9a8526173e10"
+location                     = "UK South"
+random_integer_min           = 1000
+random_integer_max           = 9999
+resource_group_name_prefix   = "SeminarHub"
+app_service_plan_name_prefix = "my-app-service-plan"
+web_app_name_prefix          = "SeminarHub-app"
+sql_server_name_prefix       = "sql-server"
+sql_admin_username           = "sqladmin"
+sql_database_name            = "SeminarHub"
+repo_url                     = "https://github.com/veselin9931/SeminarHubApp"
+repo_branch                  = "main"

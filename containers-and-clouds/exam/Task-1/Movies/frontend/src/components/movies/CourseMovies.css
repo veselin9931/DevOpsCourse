@@ -1,0 +1,13 @@
+#course-movies {
+  text-align: center;
+}
+
+#course-movies h2 {
+  color: #414040;
+}
+
+#course-movies ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

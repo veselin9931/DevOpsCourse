@@ -1,0 +1,4 @@
+docker run -d --network goals --name backend -p 80:80 -v logs:/logs -e MONGODB_USERNAME=mongoadmin -e MONGODB_PASSWORD=secret vgeorgiev99/backend
+docker run -d --network goals --name frontend -p 3000:3000 -v /src:/src vgeorgiev99/frontend
+
+docker run -d --network goals --name mongodb -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret -v data:/data/db mongo

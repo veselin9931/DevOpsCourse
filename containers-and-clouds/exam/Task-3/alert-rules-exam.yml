@@ -1,0 +1,11 @@
+groups:
+- name: probe_http_duration_alerts
+  rules:
+  - alert: HttpConnectDurationExceeded
+    expr: probe_http_duration_seconds{phase="connect"} > 0.0025
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "HTTP Connect Duration Exceeded Threshold"
+      description: "The HTTP connect duration has exceeded 0.0025 seconds for more than 5 minutes."

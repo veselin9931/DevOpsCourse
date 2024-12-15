@@ -1,0 +1,4 @@
+docker run -d --network movies --name backend -p 80:80 -v logs:/logs -e MONGODB_USERNAME=mongoadmin -e MONGODB_PASSWORD=secret vgeorgiev99/movies-backend
+docker run -d --network movies --name frontend -p 3000:3000 -v /src:/src vgeorgiev99/movies-frontend
+
+docker run -d --network movies --name mongodb -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret -v data:/data/db mongo
